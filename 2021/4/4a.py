@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-# Advent of Code 2021, Day 3
-# Run it with ./4a.py data.txt
+# Advent of Code 2021, Day 4
+# Run it with ./n.py data.txt
 
 import sys
 import numpy as np
