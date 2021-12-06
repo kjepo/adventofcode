@@ -26,9 +26,7 @@ def drawline(x0, y0, x1, y1):
     elif y0 == y1:              # horizontal line
         a[x0:x1+1,y0] += 1
     else:                       # diagonal line (but don't know if y0 < y1)
-        dy = 1
-        if y0 > y1:
-            dy = -1
+        dy = 1 if y0 < y1 else -1
         for x in range(x0,x1+1):
             a[x,y0+(x-x0)*dy] += 1
 
