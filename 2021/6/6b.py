@@ -5,7 +5,7 @@
 
 days = 256
 state = list(map(int, open("data.txt").read().split(",")))
-ntimers = [0,0,0,0,0,0,0,0,0]     # 9 timers 0..8 inclusive
+ntimers = 9*[0]                   # ntimers[i] = nr of timers with value i
 for n in state:
     ntimers[n] += 1
 for _ in range(days):
@@ -14,4 +14,4 @@ for _ in range(days):
         ntimers[i] = ntimers[i+1] # decrement timers 
     ntimers[8] = t                # new-borns
     ntimers[6] += t               # parent starts at 6 again
-print(sum(ntimers))               # should be 1644874076764 the above state
+print(sum(ntimers))               # should be 1644874076764 for the above state
