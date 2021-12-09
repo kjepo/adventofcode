@@ -5,7 +5,7 @@
 # It works, but it's not pretty but I'm tired so f*ck it.
 #
 # Basically the program tries to figure out a mapping of signals to segments.
-# 1, 7, 4, 8 are easy because the have a unique number of segments
+# 1, 7, 4, 8 are easy because they have a unique number of segments
 # We can then figure out which one is 6 because it is the only display
 # with 6 segments which doesn't have 1:s segments as a subset.
 # That missing segment in 6 is either c or f so we can figure that out.
