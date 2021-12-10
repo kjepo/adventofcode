@@ -10,7 +10,7 @@ score = 0
 errorscore = { ')': 3, ']': 57, '}': 1197, '>': 25137 }
 closing = { "{": "}", "(": ")", "[": "]", "<": ">" }
 
-# simple scanner: sets c to next character or "#" if EOL if we've reached end of line
+# simple scanner: sets c to next character or "#" if we've reached end of line
 def scan(): 
     global line, c
     if len(line) == 0:
@@ -30,7 +30,7 @@ def E():
         E()
 
 def T():
-    global c, line, score
+    global line, score
     opening = c
     scan()
     E()
@@ -40,8 +40,7 @@ def T():
         # print("Syntax error: ", c, "expected", closing[opening])
         if c in errorscore:
             score += errorscore[c]
-        line = ["EOF"]
-        c = "EOF"
+        line = []
 
 totalscores = []
 lines = open(sys.argv[1]).readlines()

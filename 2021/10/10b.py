@@ -8,9 +8,8 @@ import sys
 
 score = 0
 completion_score = { ')': 1, ']': 2, '}': 3, '>': 4 }
-closing = { "{": "}", "(": ")", "[": "]", "<": ">" }
 
-# simple scanner: sets c to next character or "#" if EOL if we've reached end of line
+# simple scanner: sets c to next character or "#" if we've reached end of line
 def scan(): 
     global line, c
     if len(line) == 0:
@@ -30,7 +29,8 @@ def E():
         E()
 
 def T():
-    global c, line, score
+    global line, score
+    closing = { "{": "}", "(": ")", "[": "]", "<": ">" }
     opening = c
     scan()
     E()
