@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import sys
 
+# This is a simpler solution to part 10B
+
 closing = { '[' : ']', '(' : ')', '{' : '}', '<' : '>' }
 value = { '(': 1, '[': 2, '{': 3, '<': 4 }
 
