@@ -8,10 +8,10 @@ import sys
 # After, e.g., "[", only "(", "{", "[", "<" or "]" can follow.
 # In other words, ")", "}", ">" are not allowed
 # Same reasoning for the other opening brackets "(", "<", "{"
-# Therefore it suffices to keep a stack of open brackets and pop them off when we
-# the matching closing bracket.
+# Therefore it suffices to keep a stack of open brackets and pop them off
+# when we see the matching closing bracket.
 
-opposite = { '[': ']', '(': ')', '{': '}', '<': '>' }
+closing = { '[' : ']', '(' : ')', '{' : '}', '<' : '>' }
 value = { ')': 3, ']': 57, '}': 1197, '>': 25137 }
 
 def scan(line):
@@ -19,7 +19,7 @@ def scan(line):
     for c in line:
         if c in "[({<":
             stack.append(c)
-        elif c in "])}>" and opposite[stack[-1]] == c:
+        elif c in "])}>" and closing[stack[-1]] == c:
             stack.pop()
         else: # syntax error, character c
             return value[c]
