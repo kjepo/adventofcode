@@ -25,8 +25,7 @@ def scan(line):
             return value[c]
     return 0
 
-lines = open(sys.argv[1]).readlines()
 score = 0
-for line in lines:
+for line in open(sys.argv[1]).readlines():
     score += scan(line.strip())
 print(score)
