@@ -23,8 +23,10 @@ def legit(path, cave):
         return True
 
     # A path must not have more than one cave that appears twice
-    # We know that cave appears in path[:-1] already: assert(cave, path[:-1])
+    # We know that cave appears in path already.
     # Question is: is there already an p in path that appears twice?
+
+    assert(cave in path);
 
     count = { }
     for p in nodes:
