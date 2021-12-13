@@ -17,10 +17,7 @@ def dfs(u, path):
                 yield from dfs(v, path + [u])
 
 if __name__ == "__main__":
-    nodes = []
-    lines = open(sys.argv[1]).readlines()
-    # read undirected graph 
-    for line in lines:          
+    for line in open(sys.argv[1]).readlines():
         [u,v] = line.strip().split("-")
         if u not in G:
             G[u] = []
