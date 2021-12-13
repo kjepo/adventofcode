@@ -61,5 +61,4 @@ if __name__ == "__main__":
             G[v] = []
         G[u].append(v)
         G[v].append(u)
-    for p in dfs('start', []):
-        print(p)
+    print(len(list(dfs('start', []))))
