@@ -28,6 +28,5 @@ if __name__ == "__main__":
             G[v] = []
         G[u].append(v)
         G[v].append(u)
-    # print(G)
     for p in dfs('start', []):
         print(p)
