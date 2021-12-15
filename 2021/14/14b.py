@@ -49,9 +49,10 @@ if __name__ == "__main__":
             if f[1] not in freq:
                 freq[f[1]] = 0
             freq[f[1]] += c2[f]
+        # each letter was counted twice, apart from 1st and last
         for f in freq:
             freq[f] = ceil(freq[f]/2)
         m = max(zip(freq.values(), freq.keys()))[1]
         l = min(zip(freq.values(), freq.keys()))[1]
         print(m, ":", freq[m],l, ":", freq[l], "=>", freq[m] - freq[l])
-        # for sample.txt and 10 iterations   B: 1749, C: 298, H: 161, N: 865
+
