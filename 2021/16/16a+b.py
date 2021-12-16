@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-
 import sys
-import math
 
 # packet    -> version literal | version operator
 # version   -> bit bit bit
@@ -22,10 +20,11 @@ for n in range(16):
     HEX[hex(n)[2].upper()] = f'0b{n:04b}'[2:]
 
 def apply(op, values):
+    from math import prod
     if op == 0:
         return sum(values)
     if op == 1:
-        return math.prod(values)
+        return prod(values)
     if op == 2:
         return min(values)
     if op == 3:
@@ -74,9 +73,8 @@ def eval(bits):
             
 if __name__ == "__main__":
     with open(sys.argv[1]) as f:
-        lines = f.read().splitlines()
-        versionsum = 0
-        for line in lines:
+        for line in f.read().splitlines():
+            versionsum = 0
             bits = ''.join([ HEX[b] for b in line.strip()])
             (_, value) = eval(bits)
             print("versionsum =", versionsum, '\nfinal value =', value)
