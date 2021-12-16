@@ -42,8 +42,8 @@ def apply(op, values):
 # recursive descent parser for packet - returns a numeric value
 def eval(bits):                 
     global versionsum
-    version, bits = bits[:3], bits[3:]
-    versionsum += int(version, 2)
+    version, bits = int(bits[:3], 2), bits[3:]
+    versionsum += version
     typeid, bits = int(bits[:3], 2), bits[3:]
     if typeid == 4:         # literal value
         digits = []
@@ -57,19 +57,16 @@ def eval(bits):
         return bits, int(''.join(digits), 2)
     else:                       # operator
         lengthbit, bits = bits[0], bits[1:]
+        values = []
         if lengthbit == '0':
-            length, bits = bits[:15], bits[15:]
-            length = int(length, 2)
+            length, bits = int(bits[:15], 2), bits[15:]
             subpackets, bits = bits[:length], bits[length:]
-            values = []
-            while len(subpackets):
+            while subpackets:
                 subpackets, value = eval(subpackets)
                 values.append(value)
             return bits, apply(typeid, values)
         elif lengthbit == '1':
-            nrsubpackets, bits = bits[:11], bits[11:]
-            nrsubpackets = int(nrsubpackets, 2)
-            values = []
+            nrsubpackets, bits = int(bits[:11], 2), bits[11:]
             for _ in range(nrsubpackets):
                 bits, value = eval(bits)
                 values.append(value)
