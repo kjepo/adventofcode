@@ -1,15 +1,21 @@
 #!/usr/bin/env python3
 
-# OPERATOR PACKET := VERSION TYPE packets
-# VERSION         := 3 BITS
-# TYPE            := LITERAL | OPERATOR
-# LITERAL         := 100
-# OPERATOR        := not 100, e.g., 110
-
-# OPERATOR PACKET := 0 15-bit length
-
 import sys
 import math
+
+# packet    -> version literal | version operator
+# version   -> bit bit bit
+# typeid    -> bit bit bit
+# bit       -> 0 | 1
+# body      -> literal | operator
+# literal   -> 1 0 0 digits
+# digits    -> 1 number digits | 0 number
+# operator  -> op-prefix op-rest
+# op-prefix -> 0 0 0 | 0 0 1 | 0 1 0 | 0 1 1 | 1 0 1 | 1 1 0 | 1 1 1
+# op-rest   -> 0 length15 ( packet ... )
+# op-rest   -> 1 length11 ( packet ... )*
+# length15  -> bit bit .. bit   (15 bits)
+# length11  -> bit bit .. bit   (11 bits)
 
 HEX = { '0' : '0000', '1' : '0001', '2' : '0010', '3' : '0011', '4' : '0100', '5' : '0101',
         '6' : '0110', '7' : '0111', '8' : '1000', '9' : '1001', 'A' : '1010', 'B' : '1011', 
@@ -32,20 +38,6 @@ def apply(op, values):
         return 1 if values[0] == values[1] else 0
     print("Illegal operation: op =", op)
     exit(0)
-
-# packet    -> version literal | version operator
-# version   -> bit bit bit
-# typeid    -> bit bit bit
-# bit       -> 0 | 1
-# body      -> literal | operator
-# literal   -> 1 0 0 digits
-# digits    -> 1 number digits | 0 number
-# operator  -> op-prefix op-rest
-# op-prefix -> 0 0 0 | 0 0 1 | 0 1 0 | 0 1 1 | 1 0 1 | 1 1 0 | 1 1 1
-# op-rest   -> 0 length15 ( packet ... )
-# op-rest   -> 1 length11 ( packet ... )*
-# length15  -> bit bit .. bit   (15 bits)
-# length11  -> bit bit .. bit   (11 bits)
 
 # recursive descent parser for packet - returns a numeric value
 def eval(bits):                 
@@ -89,6 +81,6 @@ if __name__ == "__main__":
         versionsum = 0
         for line in lines:
             bits = ''.join([ HEX[b] for b in line.strip()])
-            (bits, value) = eval(bits)
+            (_, value) = eval(bits)
             print("versionsum = ", versionsum)
             print("-->", value)
