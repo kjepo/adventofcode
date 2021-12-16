@@ -79,6 +79,4 @@ if __name__ == "__main__":
         for line in lines:
             bits = ''.join([ HEX[b] for b in line.strip()])
             (_, value) = eval(bits)
-            print("versionsum = ", versionsum)
-            print("-->", value)
-    
+            print("versionsum =", versionsum, '\nfinal value =', value)
