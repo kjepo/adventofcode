@@ -12,7 +12,7 @@ import math
 # digits    -> 1 number digits | 0 number
 # operator  -> op-prefix op-rest
 # op-prefix -> 0 0 0 | 0 0 1 | 0 1 0 | 0 1 1 | 1 0 1 | 1 1 0 | 1 1 1
-# op-rest   -> 0 length15 ( packet ... )
+# op-rest   -> 0 length15 ( packet ... )*
 # op-rest   -> 1 length11 ( packet ... )*
 # length15  -> bit bit .. bit   (15 bits)
 # length11  -> bit bit .. bit   (11 bits)
