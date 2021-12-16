@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-# Advent of Code 2021, Day 5
-# Run it with ./5b.py data.txt
+# Advent of Code 2021, Day 15
+# Run it with ./15b.py data.txt
 
 import sys
 
@@ -11,7 +11,7 @@ A = { } # A[x,y]
 # each node (x,y) can reach 2, 3, or 4 nodes (x-1,y), (x+1,y), (x,y-1), (x,y+1)
 # weight of each node is the cost of going there
 # so an edge (x,y) -- (x+1,y) has the weight A[x+1,y]
-
+# Notice: didn't bother implementing a heap for the priority queue so a bit slow
 
 def construct_neighbors():
     neighbor = { }

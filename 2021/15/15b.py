@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-# Advent of Code 2021, Day 5
-# Run it with ./5b.py data.txt
+# Advent of Code 2021, Day 15
+# Run it with ./15b.py data.txt
 
 import sys
 
