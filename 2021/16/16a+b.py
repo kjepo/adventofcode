@@ -17,9 +17,9 @@ import math
 # length15  -> bit bit .. bit   (15 bits)
 # length11  -> bit bit .. bit   (11 bits)
 
-HEX = { '0' : '0000', '1' : '0001', '2' : '0010', '3' : '0011', '4' : '0100', '5' : '0101',
-        '6' : '0110', '7' : '0111', '8' : '1000', '9' : '1001', 'A' : '1010', 'B' : '1011', 
-        'C' : '1100', 'D' : '1101', 'E' : '1110', 'F' : '1111' }
+HEX = { }
+for n in range(16):
+    HEX[hex(n)[2].upper()] = f'0b{n:04b}'[2:]
 
 def apply(op, values):
     if op == 0:
@@ -81,3 +81,4 @@ if __name__ == "__main__":
             (_, value) = eval(bits)
             print("versionsum = ", versionsum)
             print("-->", value)
+    
