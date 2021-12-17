@@ -14,6 +14,7 @@ def fire(xv, yv):
     # but a general solution should consider the sign of ty0/ty1
     while x0 <= tx1 and y0 >= ty0: 
         x0, y0 = x0+xv, y0+yv
+        # these are also simplifications of the rules:
         xv, yv = max(xv-1, 0), yv-1
         ymax = max(y0, ymax)
         if hit(x0, y0):
@@ -28,7 +29,8 @@ if __name__ == "__main__":
             xvmax, yvmax = 0, 0
             success_list = []
             for xv in range(0, tx1+1):
-                for yv in range(-500, 500): # ugly
+                # 500 is a guess, increase until it doesn't change the answer
+                for yv in range(min(ty0,ty1), 500): 
                     y = fire(xv, yv)
                     if y != -sys.maxsize:
                         success_list.append((xv,yv))
@@ -36,4 +38,4 @@ if __name__ == "__main__":
                             ymax = y
                             xvmax, yvmax = xv, yv
             print("Part A: with initial speed (%d, %d) you reach a maximum altitude of %d" % (xvmax, yvmax, fire(xvmax, yvmax)))
-            print("Part B: number of initial velocities that hits the target: %d" % len(success_list))
+            print("Part B: number of initial velocities that hit the target: %d" % len(success_list))
