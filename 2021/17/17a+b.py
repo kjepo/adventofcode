@@ -27,15 +27,15 @@ if __name__ == "__main__":
             [tx0,tx1,ty0,ty1] = map(int, re.findall(r'[-]?\d+', line))
             ymax = -sys.maxsize
             xvmax, yvmax = 0, 0
-            success_list = []
+            hits = 0
             for xv in range(0, tx1+1):
                 # 500 is a guess, increase until it doesn't change the answer
                 for yv in range(min(ty0,ty1), 500): 
                     y = fire(xv, yv)
                     if y != -sys.maxsize:
-                        success_list.append((xv,yv))
+                        hits += 1
                         if y > ymax:
                             ymax = y
                             xvmax, yvmax = xv, yv
             print("Part A: with initial speed (%d, %d) you reach a maximum altitude of %d" % (xvmax, yvmax, fire(xvmax, yvmax)))
-            print("Part B: number of initial velocities that hit the target: %d" % len(success_list))
+            print("Part B: number of initial velocities that hit the target: %d" % hits)
