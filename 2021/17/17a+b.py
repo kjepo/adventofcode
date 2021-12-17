@@ -13,11 +13,9 @@ def fire(xv, yv):
     # this termination condition works for problem set
     # but a general solution should consider the sign of ty0/ty1
     while x0 <= tx1 and y0 >= ty0: 
+        x0, y0 = x0+xv, y0+yv
+        xv, yv = max(xv-1, 0), yv-1
         ymax = max(y0, ymax)
-        x0 += xv
-        y0 += yv
-        xv = max(xv-1, 0)
-        yv -= 1
         if hit(x0, y0):
             return ymax
     return -sys.maxsize
@@ -30,7 +28,7 @@ if __name__ == "__main__":
             xvmax, yvmax = 0, 0
             success_list = []
             for xv in range(0, tx1+1):
-                for yv in range(-500, 500): # wing it...
+                for yv in range(-500, 500): # ugly
                     y = fire(xv, yv)
                     if y != -sys.maxsize:
                         success_list.append((xv,yv))
