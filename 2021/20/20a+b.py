@@ -8,7 +8,7 @@
 #    and "0" instead of "." so I can use numpy to read it.
 #    The algorithm file still contains "#" and "." however.
 # 2. I've embedded the image into a large 2D array so it can grow.
-#    The size of this image is ad hoc: you need to increase the size until
+#    The size of this array is ad hoc: you need to increase the size until
 #    the answer doesn't change.  A more clever way would be to let
 #    the array grow as needed but I'm too lazy to implement this.
 # 3. After each processing step, pixels around the border are lit.
