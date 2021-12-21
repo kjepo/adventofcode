@@ -19,7 +19,7 @@ def roll(p, s, n):
 # Python has a cache to store previous function values
 # If your language doesn't have it, you can use an
 # associative array MEMO[pos1,pos2,score1,score2]
-# Why 40000?  Well, there are only 10*10*21*21 states
+# Why 44100?  Well, there are only 10*10*21*21 states
 
 @lru_cache(44100)
 def player1(pos1, pos2, score1, score2):
