@@ -41,16 +41,13 @@ class Cube:
         vol = (self.x1 - self.x0 + 1) * (self.y1 - self.y0 + 1) * (self.z1 - self.z0 + 1)
         return vol
 
-def overlapbox(b, box, boxes):
-    temp_box = box.intersect(b)
-    if temp_box:
-        return temp_box.volume() - overlap(temp_box, boxes[1 + boxes.index(b):])
-    else:
-        return 0
-
 def overlap(box, boxes):
-    m = map(lambda b: overlapbox(b, box, boxes), boxes)
-    return sum(m)
+    sum = 0
+    for i in range(len(boxes)):
+        ti = box.intersect(boxes[i])
+        if ti:
+            sum += ti.volume() - overlap(ti, boxes[i+1:])
+    return sum
 
 if __name__ == "__main__":
     cubes = []
@@ -67,8 +64,8 @@ if __name__ == "__main__":
         # the 3rd last instruction must look at the intersection with the last two instructions
         # etc
         cubes.reverse()
-        boxes = [ ]
         on_counter = 0
+        boxes = []
         for c in cubes:
             print(c)
             if c.on:
