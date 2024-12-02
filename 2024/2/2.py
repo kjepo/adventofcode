@@ -8,11 +8,7 @@ def safe1(nums):
         diffs.append(nums[i]-nums[i-1])
     downs = list(filter(lambda x : x < 0 and x >= -3, diffs))
     ups = list(filter(lambda x : x > 0 and x <= 3, diffs))
-    if len(downs) == len(diffs):
-        return 1
-    if len(ups) == len(diffs):
-        return 1
-    return 0
+    return 1 if len(downs) == len(diffs) or len(ups) == len(diffs) else 0
 
 def safe2(nums):
     for i in range(len(nums)):
